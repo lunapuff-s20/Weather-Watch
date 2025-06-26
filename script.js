@@ -48,17 +48,23 @@ async function getWeather() {
     const icon = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
     document.getElementById("weatherResult").innerHTML = `
-      <h2>${name}, ${country}</h2>
-      <p><img src="${icon}" alt="${weather[0].description}"> ${
-      weather[0].main
-    } (${weather[0].description})</p>
+      <h2 style="text-align: center; margin-bottom: 0">${name}, ${country}</h2>
+      <div style="height: 80px; text-align: center; margin: 0"><img style="size: cover; " src="${icon}" alt="${
+      weather[0].description
+    }"></div>
+      <p style="text-align: center; margin-top: 0; margin-bottom: 12px; font-size: 16px; font-weight: bold">${weather[0].main} (${weather[0].description})</p>
       <p>🌡️ Temp: ${temp}°C (Feels like: ${feels_like}°C)</p>
       <p>📉 Min: ${temp_min}°C | 📈 Max: ${temp_max}°C</p>
       <p>💧 Humidity: ${humidity}%</p>
-      <p>🌅 Sunrise: ${toTime(sunrise, timezone)} | 🌇 Sunset: ${toTime(sunset, timezone)}</p>
+      <p>🌅 Sunrise: ${toTime(sunrise, timezone)} | 🌇 Sunset: ${toTime(
+      sunset,
+      timezone
+    )}</p>
       <p>👁️ Visibility: ${visibility / 1000} km</p>
       
     `;
+    document.getElementById("weatherResult").style.display = "block";
+
   } catch (err) {
     console.error(err);
     document.getElementById("weatherResult").innerHTML =
@@ -96,14 +102,14 @@ async function getForecast(city) {
           <div class="forecast-card">
             <p>${time}</p>
             <img src="${icon}" alt="${desc}">
-            <p>${temp}°C</p>
-            <p>${desc}</p>
+            <p style="font-size: 18px">${temp}°C</p>
+            <p style="margin-top: 16px">${desc}</p>
           </div>
         `;
       })
       .join("");
 
-    document.getElementById("forecastTitle").style.display = "block";
+    document.getElementById("forecast").style.display = "block";
     document.getElementById("forecastContainer").innerHTML = forecastHTML;
   } catch (err) {
     console.error(err);
@@ -111,18 +117,11 @@ async function getForecast(city) {
       "<p>Error loading forecast.</p>";
   }
 }
-  
 
-// Dark mode toggle
-const toggle = document.getElementById("themeToggle");
-const modeLabel = document.getElementById("modeLabel");
-
-toggle.addEventListener("change", function () {
-  document.body.classList.toggle("dark");
-
-  if (document.body.classList.contains("dark")) {
-    modeLabel.textContent = "☀️ Light Mode";
-  } else {
-    modeLabel.textContent = "🌙 Dark Mode";
+// Trigger search on Enter key
+document.getElementById("cityInput").addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    getWeather();
   }
 });
+window.onload = () => document.getElementById("cityInput").focus();

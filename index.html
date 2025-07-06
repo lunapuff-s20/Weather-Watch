@@ -1,24 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Weather Pro</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>🌤️ Weather Dashboard</h1>
-    <input type="text" id="cityInput" placeholder="Enter city name" />
-    <button onclick="getWeather()">Get Weather</button>
+  <!-- Animated Background -->
+  <div class="weather-background">
+    <div class="weather-animation" id="weatherAnimation"></div>
+  </div>
 
-    <div id="weatherResult" class="weather-card"  style="display:none"></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <h1 class="app-title">
+        <span class="weather-icon">🌦️</span>
+        Weather Pro
+      </h1>
+      <div class="header-controls">
+        <button class="favorites-btn" id="favoritesBtn" onclick="toggleFavorites()">
+          <span class="heart-icon">❤️</span>
+          Favorites
+        </button>
+        <div class="toggle-container">
+          <label class="toggle">
+            <span id="modeLabel">🌙 Dark</span>
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+          </label>  
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <div id="forecast" style="display:none">
-      <h3 id="forecastTitle">Next 18 Hours Forecast</h3>
-      <div id="forecastContainer" class="forecast-grid"></div>
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Search Section -->
+    <div class="search-section">
+      <div class="search-container">
+        <input type="text" id="cityInput" placeholder="Search for a city..." />
+        <button id="getWeather" onclick="getWeather()">
+          <span class="search-icon">🔍</span>
+        </button>
+        <button id="locationBtn" onclick="getCurrentLocation()" title="Use current location">
+          📍<span class="location-icon">Current Location </span> 
+        </button>
+      </div>
     </div>
 
+    <!-- Favorites Panel -->
+    <div id="favoritesPanel" class="favorites-panel hidden">
+      <h3>Favorite Cities</h3>
+      <div id="favoritesList" class="favorites-list"></div>
+    </div>
+
+    <!-- Weather Display -->
+    <div id="weatherResult" class="weather-card hidden"></div>
+
+    <!-- Forecast Section -->
+    <div id="forecastSection" class="forecast-section hidden">
+      <h3 class="forecast-title">24-Hour Forecast</h3>
+      <div id="forecastContainer" class="forecast-grid"></div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="loading-spinner hidden">
+    <div class="spinner"></div>
+    <p>Loading weather data...</p>
   </div>
 
   <script src="script.js"></script>

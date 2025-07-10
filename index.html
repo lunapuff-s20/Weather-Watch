@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Weather Pro</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="weather.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <!-- Animated Background -->
   <div class="weather-background">
@@ -17,7 +19,7 @@
   <header class="header">
     <div class="header-content">
       <h1 class="app-title">
-        <span class="weather-icon">🌦️</span>
+        <span class="weather-icon">🌞</span>
         Weather Pro
       </h1>
       <div class="header-controls">
@@ -27,10 +29,11 @@
         </button>
         <div class="toggle-container">
           <label class="toggle">
-            <span id="modeLabel">🌙 Dark</span>
+            <span class="modeLabel" id="light-mode">Light</span>
             <input type="checkbox" id="themeToggle">
             <span class="slider"></span>
-          </label>  
+            <span class="modeLabel" id="dark-mode">Dark</span>
+          </label>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@
           <span class="search-icon">🔍</span>
         </button>
         <button id="locationBtn" onclick="getCurrentLocation()" title="Use current location">
-          📍<span class="location-icon">Current Location </span> 
+          <span class="location-icon">📍</span>
         </button>
       </div>
     </div>
@@ -73,6 +76,7 @@
     <p>Loading weather data...</p>
   </div>
 
-  <script src="script.js"></script>
+  <script src="weather.js"></script>
 </body>
+
 </html>

@@ -4,24 +4,24 @@
   --primary-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --secondary-bg: rgba(255, 255, 255, 0.1);
   --card-bg: rgba(255, 255, 255, 0.15);
-  --text-primary: #464646;
+  --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.8);
-  --accent: #4facfe;
-  --success: #00d4df;
+  --accent: #667eea;
+  --success: #00f2fe;
   --warning: #ffa726;
   --error: #ef5350;
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 body.dark {
-  --primary-bg: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  --primary-bg: linear-gradient(135deg, #3a5b67 0%, #34495e 100%);
   --secondary-bg: rgba(0, 0, 0, 0.3);
   --card-bg: rgba(0, 0, 0, 0.2);
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
-  --success: #40f5fe;
   --glass-bg: rgba(0, 0, 0, 0.2);
   --glass-border: rgba(255, 255, 255, 0.1);
 }
@@ -62,54 +62,19 @@ body {
   transition: all 0.8s ease;
 }
 
-/* Realistic Rain Animation */
+/* Realistic Rain Animation with CSS */
 .rain-animation {
   position: relative;
   overflow: hidden;
 }
 
-.rain-animation::before,
-.rain-animation::after {
-  content: '';
-  position: absolute;
-  top: -100vh;
-  left: 0;
-  width: 100%;
-  height: 200vh;
-  background-image: 
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 98px,
-      rgba(173, 216, 230, 0.03) 100px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 48px,
-      rgba(173, 216, 230, 0.03) 50px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 23px,
-      rgba(173, 216, 230, 0.03) 25px
-    );
-  animation: rainFall 0.5s linear infinite;
-}
-
-.rain-animation::after {
-  animation-delay: -0.25s;
-  opacity: 0.7;
-}
-
 /* Individual raindrops */
 .rain-animation .raindrop {
   position: absolute;
-  width: 2px;
-  background: linear-gradient(to bottom, transparent, rgba(173, 216, 230, 0.6), transparent);
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(173, 216, 230, 0.8) 50%, transparent 100%);
   animation: dropFall linear infinite;
-  border-radius: 0 0 50% 50%;
+  border-radius: 50%;
 }
 
 @keyframes dropFall {
@@ -129,38 +94,33 @@ body {
   }
 }
 
-@keyframes rainFall {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
 
-/* Enhanced Snow Animation */
+/* Enhanced Snow Animation with CSS particles */
 .snow-animation::before,
 .snow-animation::after {
-  content: '❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️';
+  content: '';
   position: absolute;
   top: -100px;
   left: -100px;
   width: calc(100% + 200px);
-  font-size: 20px;
+  height: calc(100% + 200px);
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
   animation: snowfall 8s linear infinite, snowDrift 6s ease-in-out infinite;
-  white-space: nowrap;
-  overflow: hidden;
   opacity: 0.8;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .snow-animation::after {
-  content: '❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️';
-  font-size: 15px;
+  background-size: 150px 80px;
   animation-delay: -4s;
   animation-duration: 12s, 8s;
   opacity: 0.6;
-  left: -50px;
 }
 
 @keyframes snowfall {
@@ -174,27 +134,38 @@ body {
   75% { transform: translateX(-30px); }
 }
 
-/* Enhanced Cloud Animation */
+/* Enhanced Cloud Animation with CSS shapes */
 .clouds-animation::before,
 .clouds-animation::after {
-  content: '☁️ ☁️ ☁️ ☁️ ☁️';
+  content: '';
   position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  opacity: 0.7;
+  animation: cloudFloat 25s linear infinite;
+}
+
+.clouds-animation::before {
   top: 15%;
   left: -200px;
-  font-size: 50px;
-  animation: cloudFloat 25s linear infinite;
-  white-space: nowrap;
-  opacity: 0.7;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  width: 100px;
+  height: 40px;
+  box-shadow: 
+    120px 0 0 -10px rgba(255, 255, 255, 0.7),
+    240px 0 0 -20px rgba(255, 255, 255, 0.6);
 }
 
 .clouds-animation::after {
-  content: '☁️ ☁️ ☁️';
   top: 35%;
-  font-size: 35px;
+  left: -150px;
+  width: 80px;
+  height: 30px;
   animation-duration: 35s;
   animation-delay: -10s;
   opacity: 0.5;
+  box-shadow: 
+    100px 0 0 -8px rgba(255, 255, 255, 0.5),
+    200px 0 0 -15px rgba(255, 255, 255, 0.4);
 }
 
 @keyframes cloudFloat {
@@ -203,25 +174,30 @@ body {
   100% { transform: translateX(calc(100vw + 200px)) translateY(0px); }
 }
 
-/* Enhanced Sunny Animation */
+/* Enhanced Sunny Animation with CSS sun */
 .sunny-animation::before {
-  content: '☀️';
+  content: '';
   position: absolute;
-  top: 8%;
-  right: 8%;
-  font-size: 80px;
+  top: 10%;
+  left: 8%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #ffd700 30%, #ffed4e 70%);
+  border-radius: 50%;
   animation: sunRotate 8s linear infinite, sunPulse 3s ease-in-out infinite;
-  text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.6),
+    0 0 60px rgba(255, 215, 0, 0.4),
+    0 0 90px rgba(255, 215, 0, 0.2);
 }
 
 .sunny-animation::after {
   content: '';
   position: absolute;
-  top: 10%;
-  right: 10%;
-  width: 60px;
-  height: 60px;
+  top: 12%;
+  left: 10%;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
   animation: sunGlow 4s ease-in-out infinite;
@@ -242,7 +218,7 @@ body {
   50% { transform: scale(1.5); opacity: 0.1; }
 }
 
-/* Thunderstorm Animation */
+/* Thunderstorm Animation with CSS lightning */
 .thunderstorm-animation::before {
   content: '';
   position: absolute;
@@ -376,17 +352,12 @@ body {
 }
 
 /* Enhanced Toggle Switch */
-/* .toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-} */
 
 .toggle {
   position: relative;
   display: flex;
   align-items: center;
-  /* gap: 0.5rem; */
+  gap: 0.5rem;
 }
 
 .toggle input {
@@ -396,16 +367,16 @@ body {
 #modeLabel {
   font-size: 0.9rem;
   font-weight: 500;
-  min-width: 65px;
   transition: all 0.3s ease;
 }
 
 .slider {
-  width: 50px;
-  height: 25px;
+  width: 60px;
+  height: 30px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 30px;
+  text-align: center;
   position: relative;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -415,11 +386,11 @@ body {
 .slider::before {
   content: "";
   position: absolute;
-  top: 1.5px;
-  left: 0px;
+  top: 3px;
+  left: 3px;
   background: var(--text-primary);
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -465,9 +436,10 @@ input:checked + .slider {
 
 .search-container {
   display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  max-width: 1000px;
+  /* flex-direction: column;
+  max-width: 100%; */
+  gap: 0.5rem;
+  max-width: 600px;
   margin: 0 auto;
   position: relative;
 }
@@ -479,7 +451,8 @@ input:checked + .slider {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  border-radius: 30px;
+  /* background: linear-gradient(45deg, var(--accent), var(--success), var(--accent)); */
+  border-radius: 27px;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -498,14 +471,13 @@ input:checked + .slider {
 #cityInput {
   flex: 1;
   padding: 1rem 1.5rem;
-  height: 50px;
   border: none;
-  border-radius: 30px;
+  border-radius: 25px;
   background: var(--glass-bg);
   backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -518,7 +490,7 @@ input:checked + .slider {
 #cityInput:focus {
   outline: none;
   background: var(--card-bg);
-  box-shadow: var(--shadow), 0 0 0 3px rgba(79, 172, 254, 0.1);
+  box-shadow: var(--shadow), 0 0 0 3px rgba(102, 126, 234, 0.1);
   transform: translateY(-2px) scale(1.02);
 }
 
@@ -545,19 +517,7 @@ input:checked + .slider {
   overflow: hidden;
 }
 
-#locationBtn {
-    width: 160px;
-    border-radius: 30px;
-    padding: 0;
-    padding-right: 2px;  
-    background: var(--accent);
-}
-
-.location-icon {
-    font-size: 0.9rem;
-}
-
-/* #getWeather::before, #locationBtn::before {
+#getWeather::before, #locationBtn::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -565,14 +525,14 @@ input:checked + .slider {
   width: 0;
   height: 0;
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 30px;
-  transition: all 0.4s ease;
+  border-radius: 50%;
+  transition: all 0.6s ease;
   transform: translate(-50%, -50%);
-} */
+}
 
 #getWeather:hover::before, #locationBtn:hover::before {
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
 }
 
 #getWeather:hover, #locationBtn:hover {
@@ -582,6 +542,10 @@ input:checked + .slider {
 
 #getWeather:active, #locationBtn:active {
   transform: translateY(-1px) scale(1.05);
+}
+
+#locationBtn {
+  background: var(--success);
 }
 
 /* Enhanced Favorites Panel */
@@ -717,12 +681,13 @@ input:checked + .slider {
 
 /* Enhanced Weather Card */
 .weather-card {
+    /* min-width: 400px; */
   background: var(--glass-bg);
   backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   border-radius: 25px;
   padding: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   box-shadow: var(--shadow);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: weatherCardSlideUp 0.8s ease-out;
@@ -767,16 +732,17 @@ input:checked + .slider {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 0 1.5rem 2rem;
+  margin-bottom: 2rem;
   position: relative;
   z-index: 2;
 }
 
 .city-info h2 {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   animation: titleSlideIn 0.6s ease-out 0.2s both;
+  /* animation: titleGlow 3s ease-in-out infinite; */
 }
 
 @keyframes titleSlideIn {
@@ -794,7 +760,6 @@ input:checked + .slider {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
   animation: mainWeatherSlideIn 0.6s ease-out 0.4s both;
 }
 
@@ -830,25 +795,25 @@ input:checked + .slider {
 
 .temperature {
   font-size: 4rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
-  background: linear-gradient(45deg, var(--success), var(--accent));
+  background: var(--text-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
   animation: temperatureGlow 3s ease-in-out infinite;
+  animation: titleGlow 3s ease-in-out infinite;
 }
 
 @keyframes temperatureGlow {
-  0%, 100% { text-shadow: 0 0 20px rgba(79, 172, 254, 0.3); }
-  50% { text-shadow: 0 0 30px rgba(79, 172, 254, 0.6); }
+  0%, 100% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+  50% { text-shadow: 0 0 30px rgba(102, 126, 234, 0.6); }
 }
 
 .weather-description {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  margin-left: 0.4rem;
   opacity: 0.8;
-  margin-left: 0.3rem;
   text-transform: capitalize;
   animation: descriptionFadeIn 0.6s ease-out 0.6s both;
 }
@@ -865,7 +830,7 @@ input:checked + .slider {
 }
 
 .add-favorite {
-  background: var(--accent);
+  background: var(--success);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -1031,9 +996,9 @@ input:checked + .slider {
 }
 
 .forecast-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 600;
-  margin: 1.5rem 0;
+  margin-bottom: 1.5rem;
   text-align: center;
   animation: titleGlow 3s ease-in-out infinite;
 }
@@ -1046,10 +1011,9 @@ input:checked + .slider {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  column-gap: 1rem;
-  row-gap: 1.2rem;
+  gap: 1rem;
   overflow-x: auto;
-  padding: 1rem;
+  padding-bottom: 1rem;
 }
 
 .forecast-card {
@@ -1115,9 +1079,9 @@ input:checked + .slider {
 }
 
 .forecast-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1rem;
   animation: forecastIconFloat 3s ease-in-out infinite;
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
 }
@@ -1217,10 +1181,10 @@ input:checked + .slider {
 }
 
 /* Enhanced Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 770px) {
   .header-content {
     padding: 0 1rem;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 1rem;
   }
   
@@ -1234,6 +1198,7 @@ input:checked + .slider {
   
   .search-container {
     flex-direction: column;
+    max-width: 100%;
   }
   
   #getWeather, #locationBtn {
@@ -1243,13 +1208,20 @@ input:checked + .slider {
   }
   
   .weather-header {
-    flex-direction: column;
     text-align: center;
     gap: 1rem;
+    margin: 0 1rem;
   }
   
+  .weather-icon-large {
+      width: 90px;
+      height: 90px;
+  }
   .temperature {
-    font-size: 3rem;
+    font-size: 2.5rem;
+  }
+  .weather-description{
+    font-size: 1rem;
   }
   
   .weather-details {
@@ -1260,11 +1232,23 @@ input:checked + .slider {
   .forecast-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
+  
+  .favorites-list {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 440px) {
+  .search-container {
+    flex-direction: column;
+    max-width: 100%;   
+  }
   .weather-card {
-    padding: 1.5rem;
+    min-width: 100px;
+    padding: 1.2rem;
+  }
+  .city-info h2 {
+      font-size: 1.8rem;
   }
   
   .temperature {
@@ -1276,7 +1260,38 @@ input:checked + .slider {
   }
   
   .forecast-card {
-    min-width: 120px;
+    min-width: 130px;
+    row-gap: 1rem;
+  }
+  
+  .header-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* .favorites-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  } */
+  
+  #modeLabel {
+    font-size: 0.6rem;
+  }
+  
+  .slider {
+    width: 50px;
+    height: 25px;
+  }
+  
+  .slider::before {
+    width: 19px;
+    height: 19px;
+    top: 2px;
+    left: 2px;
+  }
+  
+  input:checked + .slider::before {
+    transform: translateX(23px);
   }
 }
 
